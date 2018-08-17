@@ -1,22 +1,28 @@
 package com.neo.controller;
 
-import com.neo.entity.Visitor;
-import com.neo.repository.VisitorRepository;
+import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
+import com.neo.entity.Visitor;
+import com.neo.repository.VisitorRepository;
 
 @RestController
 public class VisitorController {
 
+	private static final Logger logger = LoggerFactory.getLogger(VisitorController.class);
+	
     @Autowired
     private VisitorRepository repository;
 	
     @RequestMapping("/")
     public String index(HttpServletRequest request) {
         String ip=request.getRemoteAddr();
+        logger.info("ip={}", ip);
         Visitor visitor=repository.findByIp(ip);
         if(visitor==null){
             visitor=new Visitor();

@@ -1,0 +1,16 @@
+/target
+/bin
+/build
+/.settings
+/.classpath
+/.project
+/.gradle
+*.log
+*.iml
+*.class
+.checkstyle
+/.idea
+.classpath
+.project
+.settings
+target
